@@ -1,3 +1,5 @@
+package ru.netology;
+
 import org.junit.jupiter.api.*;
 import ru.netology.entity.Country;
 import ru.netology.entity.Location;
@@ -6,12 +8,12 @@ import ru.netology.i18n.LocalizationServiceImpl;
 
 public class LocalizationServiceTest extends LocalizationServiceImpl {
 
-    LocalizationServiceImpl sut;
+    LocalizationServiceImpl value;
 
     @BeforeEach
     public void init() {
         System.out.println("tests started");
-        sut = new LocalizationServiceImpl();
+        value = new LocalizationServiceImpl();
     }
 
     @BeforeAll
@@ -32,14 +34,14 @@ public class LocalizationServiceTest extends LocalizationServiceImpl {
     @Test
     public void testLocaleRussia(){
         String message = "Добро пожаловать";
-        String expected = sut.locale(Country.RUSSIA);
+        String expected = value.locale(Country.RUSSIA);
         Assertions.assertEquals(expected, message);
     }
 
     @Test
     public void testLocaleUsa(){
         String message = "Welcome";
-        String expected = sut.locale(Country.USA);
+        String expected = value.locale(Country.USA);
         Assertions.assertEquals(expected, message);
     }
 

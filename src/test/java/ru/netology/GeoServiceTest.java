@@ -1,3 +1,5 @@
+package ru.netology;
+
 import org.hamcrest.junit.ExpectedException;
 import org.junit.Rule;
 import org.junit.jupiter.api.*;
@@ -10,7 +12,7 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GeoServiceTest {
-    GeoServiceImpl sut;
+    private GeoServiceImpl value;
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
@@ -18,7 +20,7 @@ public class GeoServiceTest {
     @BeforeEach
     public void init() {
         System.out.println("tests started");
-        sut = new GeoServiceImpl();
+        value = new GeoServiceImpl();
     }
 
     @BeforeAll
@@ -39,7 +41,7 @@ public class GeoServiceTest {
     @Test
     public void testByIp(){
         String ip = "172.123.12.19";
-        Location result = sut.byIp(ip);
+        Location result = value.byIp(ip);
         Assertions.assertInstanceOf(Location.class, result);
     }
 
@@ -47,7 +49,7 @@ public class GeoServiceTest {
     public void testByIpRussian(){
         String ip = "172.123.12.19";
         Country expexted = Country.USA;
-        Country result = sut.byIp(ip).getCountry();
+        Country result = value.byIp(ip).getCountry();
         Assertions.assertEquals(expexted, result);
     }
 
@@ -55,7 +57,7 @@ public class GeoServiceTest {
     public void testByIpUSA(){
         String ip = "96.44.183.149";
         Country expexted = Country.USA;
-        Country result = sut.byIp(ip).getCountry();
+        Country result = value.byIp(ip).getCountry();
         Assertions.assertEquals(expexted, result);
     }
 
@@ -64,7 +66,7 @@ public class GeoServiceTest {
 //        thrown.expect(RuntimeException.class);
 //        thrown.expectMessage("Not implemented");
 //        Если я правильно понял, то две сторки выше и строка ниже проверяют одно и тоже???
-        Assertions.assertThrows(RuntimeException.class, () -> {sut.byCoordinates(13.00, 14.00);}, "NOK");
+        Assertions.assertThrows(RuntimeException.class, () -> {value.byCoordinates(13.00, 14.00);}, "NOK");
 
     }
 }
